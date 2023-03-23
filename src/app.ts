@@ -27,6 +27,8 @@ accounting.addEmployee("Max");
 
 accounting.employees[2] = "Anna";
 
+accounting.name = "Zedman";
+
 accounting.printEmployeeInformation();
 accounting.describe();
 
