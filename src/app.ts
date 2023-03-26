@@ -1,112 +1,18 @@
-// Code goes here!
-class Department {
-  static fiscalYear = 2023;
-  //   private readonly id: string;
-  //   private name: string;
-  protected employees: string[] = [];
+interface Person {
+  name: string;
+  age: number;
 
-  constructor(private readonly id: string, public name: string) {
-    // this.id = id;
-    // this.name = n;
-    // console.log(Department.fiscalYear);
-  }
-
-  static createEmployee(name: string) {
-    return {
-      name: name,
-    };
-  }
-
-  describe(this: Department) {
-    console.log(`Department (${this.id}): ${this.name}`);
-  }
-  addEmployee(employee: string) {
-    //validation
-
-    // this.id = "d2";
-    this.employees.push(employee);
-  }
-  printEmployeeInformation() {
-    console.log(this.employees.length);
-    console.log(this.employees);
-  }
+  greet(phrase: string): void;
 }
 
-class ITDepartment extends Department {
-  admins: string[];
-  constructor(id: string, admins: string[]) {
-    super(id, "IT");
-    this.admins = admins;
-  }
-}
+let user1: Person;
 
-class AccountingDepartment extends Department {
-  private lastReport: string;
+user1 = {
+  name: "Max",
+  age: 100,
+  greet(phrase: string) {
+    console.log(phrase + " " + this.name);
+  },
+};
 
-  get mostRecentReport() {
-    if (this.lastReport) {
-      return this.lastReport;
-    }
-    throw new Error("No report found.");
-  }
-
-  set mostRecentReport(value: string) {
-    if (!value) {
-      throw new Error("Please pass in a valid value.");
-    }
-    this.addReport(value);
-  }
-
-  constructor(id: string, private reports: string[]) {
-    super(id, "Accounting");
-    this.lastReport = reports[0];
-  }
-
-  addEmployee(name: string) {
-    if (name === "Zid") {
-      return;
-    }
-    this.employees.push(name);
-  }
-
-  addReport(text: string) {
-    this.reports.push(text);
-    this.lastReport = text;
-  }
-  printReports() {
-    console.log(this.reports);
-  }
-}
-
-const employee1 = Department.createEmployee("Jess");
-
-console.log(employee1, Department.fiscalYear);
-
-const it = new ITDepartment("d1", ["Zid"]);
-
-it.addEmployee("Zidane");
-it.addEmployee("Max");
-
-// it.addEmployee[2] = 'Anna'
-
-it.describe();
-it.printEmployeeInformation();
-
-console.log(it);
-
-const accounting = new AccountingDepartment("d2", []);
-
-accounting.mostRecentReport = "Year end report";
-
-accounting.addReport("Something went wrong...");
-console.log(accounting.mostRecentReport);
-
-accounting.addEmployee("Zidane");
-accounting.addEmployee("Max");
-
-accounting.printReports();
-accounting.printEmployeeInformation();
-
-// const accountingCopy = { name: "Rich", describe: accounting.describe };
-
-// accountingCopy.describe();
+user1.greet("Hi there I am ");
